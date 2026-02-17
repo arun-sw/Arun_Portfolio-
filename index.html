@@ -1,128 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arunkumar Murugan - Portfolio</title>
-  <link rel="icon" type="image/png" href="Ak_logo.png">
-  <link rel="stylesheet" href="style.css" />
-</head>  
-<body>  
-  <div class="container">
-    <header>
-      <h1>Arunkumar Murugan</h1>
-      <p id="typewriter"></p>
-      <p>Email: <a href="mailto:arunml2205@gmail.com">arunml2205@gmail.com</a></p>
-      <p>Location: Coimbatore, Tamil Nadu</p>
-    </header>
-
-    <section class="section">
-      <h2>Career Objective</h2>
-      <p>
-       A passionate and dedicated BCA student seeking an entry-level role in software development or web technologies. Eager to apply academic knowledge,
-        enhance technical skills, and contribute to real-world projects. Strong interest in Java, full-stack development, and modern tools.
-      </p>
-    </section>
-    <section class="section">
-      <h2>About Me</h2>
-      <p>
-        I’m Arunkumar Murugan, a Full Stack Developer passionate about turning ideas into real-world applications. I have hands-on experience building web applications using Java, Spring Boot, and MySQL.
-        I enjoy building intuitive interfaces and writing clean backend logic that powers efficient solutions.
-      </p>
-    </section>
-    <section class="section">
-      <h2>Skills</h2>
-      <ul>
-        <li><strong>Languages:</strong> Java, SQL, PL/SQL</li>
-        <li><strong>Frameworks:</strong> Spring Boot, JDBC</li>
-        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
-        <li><strong>Database:</strong> MySQL, Oracle</li>
-        <li><strong>Tools:</strong> IntelliJ IDEA, VS Code, Git, GitHub</li>
-      </ul>
-    </section>
-
-   <section class="section">
-  <h2>Projects</h2>
-
-  <h3>Question Management System (Full Stack Web Application)</h3>
-  <p>
-    Developed a full-stack web application for quiz management. Admins can add, edit, and delete quiz questions, while users can take quizzes and view scores. 
-    The backend is built using Spring Boot and MySQL, and the frontend uses HTML, CSS, and JavaScript.
-    <a href="https://wholesome-fascination-production.up.railway.app/" target="_blank"></a><br>
-  </p>
-
-  <h3>Data Visualization Dashboard</h3>
-  <p>
-    Created interactive dashboards using Power BI and Excel to visualize sales and user performance data. 
-    Used charts, KPIs, and filters to present clear and actionable business insights.
-  </p>
-
-  <h3>Task Management API</h3>
-  <p>
-    Built a RESTful API using Node.js, Express, and MongoDB for managing tasks. 
-    Implemented full CRUD operations and ensured proper routing and error handling.
-  </p>
-</section>
+  <title>Arunkumar M | Full-Stack Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-    <section class="section">
-  <h2>Certifications</h2>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <ul>
-    <li>Full Stack Certification – IBM Cloud</li>
-    <li>AWS Community Builders Bootcamp Certificate</li>
-    <li>AI for Beginners Certificate – HP LIFE</li>
-    <li>Artificial Intelligence Internship Certificate – Refinement Software Solutions Pvt Ltd</li>
-  </ul>
-</section>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      color: #e0e0ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-attachment: fixed;
+    }
 
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%);
+    }
 
-    <section class="section">
-      <h2>Education</h2>
-      <p>
-        Bachelor of computer application<br>
-       V.L.B. Janakiammal College of Arts and Science, Coimbatore<br>
-        Graduation Year: 2026      </p>
-    </section>
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 12, 41, 0.65);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.12);
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
 
-    <section class="section">
-      <h2>Languages</h2>
-      <p>Tamil (Native), English (Intermediate)</p>
-    </section>
+    nav.scrolled {
+      background: rgba(15, 12, 41, 0.92);
+      padding: 0.9rem 5%;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+    }
 
-    <section class="section">
-      <h2>Interests & Strengths</h2>
-      <ul>
-        <li>Problem-solving and logical thinking</li>
-        <li>Learning new technologies</li>
-        <li>Building user-focused applications</li>
-        <li>Strong communication and teamwork</li>
-      </ul>
-    </section>
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
 
-    <section class="section">
-      <h2>Connect With Me</h2>
-      <p>
-        🔗 GitHub: <a href="https://github.com/arun-sw" target="_blank">https://github.com/arun-sw</a><br>
-        💼 LinkedIn: <a href="https://www.linkedin.com/in/arunkumar-murugan-5b6173274" target="_blank">linkedin.com/in/arunkumar-murugan</a><br>
-        📞 Phone:   <a href="tel:+918667753191">+91 8667753191</a></p>
-     </p>
-    </section>
+    .nav-links a {
+      color: #d0d0ff;
+      text-decoration: none;
+      margin-left: 2.2rem;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
 
-    <footer>
-     <div class="resume-buttons">
-                <a class="btn download-btn" href="Arunkumar_Murugan_Resume.pdf" download>📄 Download My Resume</a>
-                <a class="btn view-btn" href="Arunkumar_Murugan_Resume.pdf" target="_blank">View Resume</a>
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00f0ff;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff);
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 10rem 5% 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      font-weight: 800;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #7b00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 4.8rem;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 3.2rem;
+      text-align: center;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 5%;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      color: #a0a0ff;
+      margin: 1.5rem 0 2.5rem;
+      max-width: 680px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.4rem;
+      background: linear-gradient(45deg, #00d4ff, #ff00aa);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-right: 1.5rem;
+      transition: all 0.4s;
+      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #00f0ff;
+      color: #00f0ff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 240, 255, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(30, 25, 80, 0.25);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      transition: all 0.5s ease;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.25);
+      border-color: rgba(0, 255, 255, 0.4);
+    }
+
+    .skills-grid, .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+
+    .skill-item, .cert-item {
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      color: #9090cc;
+      border-top: 1px solid rgba(0,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 3.6rem; }
+      nav { flex-direction: column; gap: 1rem; }
+      .nav-links { margin-top: 1rem; }
+      .nav-links a { margin: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="particles"></div>
+
+  <nav id="navbar">
+    <div class="logo">ARUN</div>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
     </div>
+  </nav>
 
-    </footer>
-  </div>
+  <section class="hero" id="home">
+    <h1>Arunkumar Murugan</h1>
+    <p class="tagline">
+      BCA '26 | Full-Stack Developer Enthusiast<br>
+      Java • Spring Boot • React • MySQL • Passionate about building clean, scalable web solutions
+    </p>
 
-  <script src="script.js"></script>
+    <div>
+      <a href="https://github.com/arun-sw" target="_blank" class="btn">View Projects on GitHub</a>
+      <a href="mailto:arunml2205@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="glass-card">
+      <p style="font-size:1.2rem; line-height:1.8; color:#d0d0ff;">
+        Passionate BCA student (expected 2026) with strong foundation in Java Full-Stack Development and modern web technologies.<br><br>
+        Quick learner, problem-solver, team player. Actively participated in hackathons, workshops, and served as Class Representative.<br><br>
+        Currently exploring Spring Boot, React, PostgreSQL, MongoDB and building real-world projects.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skill Set</h2>
+    <div class="skills-grid">
+      <div class="glass-card skill-item">
+        <div class="icon"><i class="fab fa-java"></i></div>
+        <h3>Java Full-Stack</h3>
+        <p>Spring | Spring Boot</p>
+      </div>
+      <div class="glass-card skill-item">
+        <div class="icon"><i class="fab fa-react"></i></div>
+        <h3>Frontend</h3>
+        <p>HTML • CSS • JavaScript • React</p>
+      </div>
+      <div class="glass-card skill-item">
+        <div class="icon"><i class="fas fa-database"></i></div>
+        <h3>Databases</h3>
+        <p>MySQL • PostgreSQL • MongoDB</p>
+      </div>
+      <div class="glass-card skill-item">
+        <div class="icon"><i class="fas fa-tools"></i></div>
+        <h3>Tools</h3>
+        <p>Git • GitHub • Power BI • Excel</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <h2>Certifications & Achievements</h2>
+    <div class="certs-grid">
+      <div class="glass-card cert-item">
+        <h3>Artificial Intelligence Internship</h3>
+        <p>Refinement Software Solutions Pvt. Ltd • 2025</p>
+      </div>
+      <div class="glass-card cert-item">
+        <h3>Full Stack Certification</h3>
+        <p>IBM CloudDigiLabs • 2024</p>
+      </div>
+      <div class="glass-card cert-item">
+        <h3>Software Engineer Accomplishment</h3>
+        <p>HackerRank • 2025</p>
+      </div>
+      <div class="glass-card cert-item">
+        <h3>AI for Beginners</h3>
+        <p>HP LIFE • 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let's Connect</h2>
+    <div class="glass-card" style="text-align:center;">
+      <p style="font-size:1.4rem; margin-bottom:2rem;">
+        Open to entry-level opportunities, internships & collaborations
+      </p>
+      <p>
+        <strong>Email:</strong> arunml2205@gmail.com<br>
+        <strong>Phone:</strong> +91 86677 53191<br>
+        <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" target="_blank" style="color:#00f0ff;">linkedin.com/in/arunkumar-murugan-5b6173274</a><br>
+        <strong>GitHub:</strong> <a href="https://github.com/arun-sw" target="_blank" style="color:#00f0ff;">github.com/arun-sw</a><br>
+        <strong>Portfolio:</strong> <a href="https://arun-sw.github.io/MY-Resume/" target="_blank" style="color:#00f0ff;">arun-sw.github.io</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Arunkumar Murugan • arunml2205@gmail.com </p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    
+  </script>
+
 </body>
 </html>
-
-
-
-
-
