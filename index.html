@@ -1,362 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arunkumar M | Full-Stack Developer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-      color: #e0e0ff;
-      min-height: 100vh;
-      overflow-x: hidden;
-      background-attachment: fixed;
-    }
-
-    /* Animated background particles */
-    .particles {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: -1;
-      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1.2rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(12px);
-      background: rgba(15, 12, 41, 0.65);
-      border-bottom: 1px solid rgba(0, 255, 255, 0.12);
-      z-index: 1000;
-      transition: all 0.4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(15, 12, 41, 0.92);
-      padding: 0.9rem 5%;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.5);
-    }
-
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #00f0ff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-    }
-
-    .nav-links a {
-      color: #d0d0ff;
-      text-decoration: none;
-      margin-left: 2.2rem;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #00f0ff;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: linear-gradient(90deg, #00f0ff, #ff00ff);
-      transition: width 0.4s ease;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    section {
-      padding: 10rem 5% 6rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    h1, h2 {
-      font-weight: 800;
-      background: linear-gradient(90deg, #00ffff, #ff00ff, #7b00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 {
-      font-size: 4.8rem;
-      line-height: 1.05;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 3.2rem;
-      text-align: center;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 0 5%;
-    }
-
-    .tagline {
-      font-size: 1.5rem;
-      color: #a0a0ff;
-      margin: 1.5rem 0 2.5rem;
-      max-width: 680px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 1rem 2.4rem;
-      background: linear-gradient(45deg, #00d4ff, #ff00aa);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      margin-right: 1.5rem;
-      transition: all 0.4s;
-      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #00f0ff;
-      color: #00f0ff;
-    }
-
-    .btn-outline:hover {
-      background: rgba(0, 240, 255, 0.1);
-    }
-
-    .glass-card {
-      background: rgba(30, 25, 80, 0.25);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 255, 255, 0.18);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin: 2rem 0;
-      transition: all 0.5s ease;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    }
-
-    .glass-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.25);
-      border-color: rgba(0, 255, 255, 0.4);
-    }
-
-    .skills-grid, .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 3rem;
-    }
-
-    .skill-item, .cert-item {
-      text-align: center;
-    }
-
-    .icon {
-      font-size: 3.2rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #00ffff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    footer {
-      text-align: center;
-      padding: 4rem 0 2rem;
-      color: #9090cc;
-      border-top: 1px solid rgba(0,255,255,0.1);
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 3.6rem; }
-      nav { flex-direction: column; gap: 1rem; }
-      .nav-links { margin-top: 1rem; }
-      .nav-links a { margin: 0 1rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arunkumar Murugan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f; --card: #1a1a24;
+    --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+    --accent: #6C63FF; --accent2: #00D4AA; --accent3: #FF6B6B;
+    --text: #f0f0f8; --muted: #8080a0;
+    --tag-bg: rgba(108,99,255,0.15); --tag-color: #a09cff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .hero { min-height: 100vh; padding: 120px 5% 80px; display: flex; align-items: center; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(108,99,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,212,170,0.08) 0%, transparent 60%); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3); color: var(--tag-color); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 20px; margin-bottom: 20px; }
+  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(38px, 5vw, 62px); font-weight: 800; line-height: 1.05; letter-spacing: -1px; margin-bottom: 20px; }
+  .h1-gradient { background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-desc { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 460px; margin-bottom: 32px; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #fff; padding: 11px 24px; border-radius: 10px; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s, transform 0.15s; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--text); padding: 11px 24px; border-radius: 10px; border: 1px solid var(--border2); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s, transform 0.15s; }
+  .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
+  .avatar-ring { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+  .hero-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .hero-role { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  .stat-row { display: flex; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+  .stag { background: var(--tag-bg); color: var(--tag-color); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 2px; font-weight: 600; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; margin-bottom: 12px; line-height: 1.15; }
+  .section-sub { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+  .skills-section { background: var(--bg2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: border-color 0.25s, transform 0.2s; }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-card-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); margin-bottom: 12px; }
+  .skill-card-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-item { font-size: 11px; background: var(--bg3); color: var(--muted); padding: 3px 9px; border-radius: 5px; border: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.2s; display: flex; flex-direction: column; }
+  .project-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+  .project-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .pa-blue { background: linear-gradient(90deg, var(--accent), #a78bfa); }
+  .pa-green { background: linear-gradient(90deg, var(--accent2), #4ade80); }
+  .pa-red { background: linear-gradient(90deg, var(--accent3), #f97316); }
+  .project-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+  .pi-blue { background: rgba(108,99,255,0.15); color: var(--accent); }
+  .pi-green { background: rgba(0,212,170,0.12); color: var(--accent2); }
+  .pi-red { background: rgba(255,107,107,0.12); color: var(--accent3); }
+  .project-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 16px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .ptag { font-size: 11px; padding: 3px 9px; border-radius: 5px; border: 1px solid; font-weight: 500; }
+  .ptag-blue { background: rgba(108,99,255,0.1); color: #a09cff; border-color: rgba(108,99,255,0.25); }
+  .ptag-green { background: rgba(0,212,170,0.08); color: #5eead4; border-color: rgba(0,212,170,0.2); }
+  .ptag-red { background: rgba(255,107,107,0.08); color: #fca5a5; border-color: rgba(255,107,107,0.2); }
+  .project-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent2); font-size: 13px; font-weight: 500; text-decoration: none; transition: gap 0.2s; }
+  .project-link:hover { gap: 8px; }
+  .chatbot-section { background: var(--bg2); }
+  .chatbot-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .chatbot-preview { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+  .chat-header { background: var(--bg3); padding: 14px 18px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .chat-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .cd-r { background: #ff5f57; } .cd-y { background: #febc2e; } .cd-g { background: #28c840; }
+  .chat-title { font-size: 13px; font-weight: 600; margin-left: 4px; }
+  .chat-status { margin-left: auto; font-size: 11px; color: var(--accent2); display: flex; align-items: center; gap: 4px; }
+  .chat-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .msg { max-width: 80%; font-size: 13px; line-height: 1.55; padding: 10px 14px; border-radius: 12px; }
+  .msg-bot { background: var(--bg3); color: var(--text); border-bottom-left-radius: 3px; align-self: flex-start; }
+  .msg-user { background: var(--accent); color: #fff; border-bottom-right-radius: 3px; align-self: flex-end; }
+  .chat-input { margin: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+  .chat-input span { font-size: 12px; color: var(--muted); }
+  .send-btn { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; }
+  .chatbot-info h3 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+  .chatbot-info p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .feature-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .feature-item { display: flex; align-items: flex-start; gap: 10px; }
+  .feat-icon { color: var(--accent2); font-size: 16px; margin-top: 2px; }
+  .feat-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .feat-text strong { color: var(--text); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.2s; }
+  .cert-card:hover { border-color: var(--border2); }
+  .cert-icon-box { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .ci-aws { background: rgba(255,153,0,0.12); color: #fb923c; }
+  .ci-infosys { background: rgba(108,99,255,0.12); color: var(--accent); }
+  .ci-ms { background: rgba(0,120,212,0.12); color: #60a5fa; }
+  .ci-mysql { background: rgba(0,212,170,0.12); color: var(--accent2); }
+  .ci-ai { background: rgba(255,107,107,0.12); color: var(--accent3); }
+  .ci-ibm { background: rgba(20,184,166,0.12); color: #2dd4bf; }
+  .ci-hp { background: rgba(108,99,255,0.12); color: #c4b5fd; }
+  .ci-hr { background: rgba(0,212,170,0.12); color: #34d399; }
+  .cert-body { flex: 1; }
+  .cert-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+  .cert-org { font-size: 11px; color: var(--muted); }
+  .cert-year { font-size: 10px; font-weight: 600; color: var(--tag-color); background: var(--tag-bg); padding: 2px 7px; border-radius: 4px; margin-top: 6px; display: inline-block; }
+  .edu-section { background: var(--bg2); }
+  .edu-timeline { display: flex; flex-direction: column; gap: 0; }
+  .edu-item { display: grid; grid-template-columns: 120px 1fr; gap: 0 24px; position: relative; padding-bottom: 32px; }
+  .edu-item:last-child { padding-bottom: 0; }
+  .edu-year { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--accent); text-align: right; padding-top: 4px; }
+  .edu-line { position: relative; padding-left: 24px; }
+  .edu-line::before { content: ''; position: absolute; left: -1px; top: 10px; bottom: -32px; width: 1px; background: var(--border); }
+  .edu-item:last-child .edu-line::before { display: none; }
+  .edu-dot { position: absolute; left: -6px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg2); }
+  .edu-degree { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .edu-inst { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .edu-score { font-size: 12px; font-weight: 500; color: var(--accent2); background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); padding: 2px 8px; border-radius: 5px; display: inline-block; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .contact-text p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-link { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-size: 14px; padding: 12px 16px; border-radius: 11px; background: var(--card); border: 1px solid var(--border); transition: border-color 0.2s; }
+  .contact-link:hover { border-color: var(--accent); }
+  .cl-icon { color: var(--accent); font-size: 18px; width: 20px; }
+  .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+  .form-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+  .form-row { margin-bottom: 14px; }
+  .form-row label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
+  .form-row input, .form-row textarea { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; resize: none; }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--accent); }
+  .form-row textarea { height: 90px; }
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 28px 5%; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.8; }
+  footer span { color: var(--accent2); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fadeup { animation: fadeUp 0.7s ease both; }
+  .d1{animation-delay:0.1s} .d2{animation-delay:0.25s} .d3{animation-delay:0.4s} .d4{animation-delay:0.55s}
+  @media (max-width: 768px) { .hero-grid, .chatbot-showcase, .contact-grid { grid-template-columns: 1fr; } .hero-card { display: none; } nav { padding: 0 4%; } .nav-links { gap: 16px; } }
+</style>
 </head>
 <body>
-
-  <div class="particles"></div>
-
-  <nav id="navbar">
-    <div class="logo">ARUN</div>
-    <div class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <section class="hero" id="home">
-    <h1>Arunkumar Murugan</h1>
-    <p class="tagline">
-      BCA '26 | Full-Stack Developer Enthusiast<br>
-      Java • Spring Boot • React • MySQL • Passionate about building clean, scalable web solutions
-    </p>
-
-    <div>
-      <a href="https://github.com/arun-sw" target="_blank" class="btn">View Projects on GitHub</a>
-      <a href="mailto:arunml2205@gmail.com" class="btn btn-outline">Get in Touch</a>
-    </div>
-  </section>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="glass-card">
-      <p style="font-size:1.2rem; line-height:1.8; color:#d0d0ff;">
-        Passionate BCA student (expected 2026) with strong foundation in Java Full-Stack Development and modern web technologies.<br><br>
-        Quick learner, problem-solver, team player. Actively participated in hackathons, workshops, and served as Class Representative.<br><br>
-        Currently exploring Spring Boot, React, PostgreSQL, MongoDB and building real-world projects.
-      </p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skill Set</h2>
-    <div class="skills-grid">
-      <div class="glass-card skill-item">
-        <div class="icon"><i class="fab fa-java"></i></div>
-        <h3>Java Full-Stack</h3>
-        <p>Spring | Spring Boot</p>
-      </div>
-      <div class="glass-card skill-item">
-        <div class="icon"><i class="fab fa-react"></i></div>
-        <h3>Frontend</h3>
-        <p>HTML • CSS • JavaScript • React</p>
-      </div>
-      <div class="glass-card skill-item">
-        <div class="icon"><i class="fas fa-database"></i></div>
-        <h3>Databases</h3>
-        <p>MySQL • PostgreSQL • MongoDB</p>
-      </div>
-      <div class="glass-card skill-item">
-        <div class="icon"><i class="fas fa-tools"></i></div>
-        <h3>Tools</h3>
-        <p>Git • GitHub • Power BI • Excel</p>
+<nav>
+  <div class="nav-logo">AM</div>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#skills">Skills</a>
+    <a href="#projects">Projects</a><a href="#certifications">Certs</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+<section class="hero" id="about">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div class="fadeup d1">
+      <div class="hero-badge"><span></span> Open to Opportunities</div>
+      <h1><span class="h1-gradient">Arunkumar<br>Murugan</span></h1>
+      <p class="hero-desc">A passionate full-stack developer &amp; BCA student building real-world Java applications, AI-powered chatbots, and modern web solutions. Turning ideas into elegant, functional software.</p>
+      <div class="hero-ctas">
+        <a href="https://github.com/arun-sw" class="btn-primary" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="btn-secondary" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a href="mailto:arunml2205@gmail.com" class="btn-secondary"><i class="ti ti-mail"></i> Email Me</a>
       </div>
     </div>
-  </section>
-
-  <section id="certs">
-    <h2>Certifications & Achievements</h2>
-    <div class="certs-grid">
-      <div class="glass-card cert-item">
-        <h3>Artificial Intelligence Internship</h3>
-        <p>Refinement Software Solutions Pvt. Ltd • 2025</p>
-      </div>
-      <div class="glass-card cert-item">
-        <h3>Full Stack Certification</h3>
-        <p>IBM CloudDigiLabs • 2024</p>
-      </div>
-      <div class="glass-card cert-item">
-        <h3>Software Engineer Accomplishment</h3>
-        <p>HackerRank • 2025</p>
-      </div>
-      <div class="glass-card cert-item">
-        <h3>AI for Beginners</h3>
-        <p>HP LIFE • 2025</p>
+    <div class="fadeup d3">
+      <div class="hero-card">
+        <div class="avatar-ring">AM</div>
+        <div class="hero-name">Arunkumar Murugan</div>
+        <div class="hero-role">Java Full-Stack Developer · BCA Final Year · Coimbatore</div>
+        <div class="skill-tags"><span class="stag">Java</span><span class="stag">Spring Boot</span><span class="stag">React</span><span class="stag">MySQL</span><span class="stag">Python</span><span class="stag">MongoDB</span></div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Languages</div></div>
+          <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Certs</div></div>
+          <div class="stat"><div class="stat-num">77%</div><div class="stat-label">BCA Score</div></div>
+          <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Graduating</div></div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- Replace or add this as your #contact section -->
-<section id="contact">
-  <h2>Get in Touch</h2>
-  
-  <div class="glass-card" style="max-width: 780px; margin: 0 auto; text-align: center;">
-    <p style="font-size: 1.4rem; margin-bottom: 2.2rem; color: #c0c0ff;">
-      I'm currently looking for entry-level opportunities, internships,<br>
-      or cool full-stack / Java projects to collaborate on. Let's talk!
-    </p>
-
-    <!-- Quick contact links -->
-    <div style="display: flex; justify-content: center; gap: 2.5rem; margin: 2.5rem 0; flex-wrap: wrap;">
-      <a href="mailto:arunml2205@gmail.com" class="contact-btn">
-        <i class="fas fa-envelope"></i> Email Me
-      </a>
-      <a href="tel:+918667753191" class="contact-btn">
-        <i class="fas fa-phone-alt"></i> Call Me
-      </a>
-      <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" target="_blank" class="contact-btn">
-        <i class="fab fa-linkedin-in"></i> LinkedIn
-      </a>
-      <a href="https://github.com/arun-sw" target="_blank" class="contact-btn">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-    </div>
-
-    <!-- Optional: Simple Contact Form -->
-    <form action="https://formspree.io/f/your-form-id" method="POST" style="margin-top: 3rem; max-width: 580px; margin-left: auto; margin-right: auto;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 1.6rem;">
-        <input type="text" name="name" placeholder="Your Name" required style="padding: 1rem; border-radius: 12px; border: 1px solid rgba(0,255,255,0.3); background: rgba(30,30,80,0.4); color: white; font-size: 1.05rem;">
-        <input type="email" name="email" placeholder="Your Email" required style="padding: 1rem; border-radius: 12px; border: 1px solid rgba(0,255,255,0.3); background: rgba(30,30,80,0.4); color: white; font-size: 1.05rem;">
-      </div>
-      <textarea name="message" rows="5" placeholder="Your Message..." required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid rgba(0,255,255,0.3); background: rgba(30,30,80,0.4); color: white; font-size: 1.05rem; margin-bottom: 1.6rem; resize: vertical;"></textarea>
-      
-      <button type="submit" class="btn" style="width: 100%; max-width: 320px; margin: 0 auto; display: block;">
-        Send Message
-      </button>
-    </form>
-
-    <p style="margin-top: 2.5rem; font-size: 0.95rem; color: #9090cc;">
-      Or just say hi on any of the platforms above — I usually reply within a day ✌️
-    </p>
   </div>
 </section>
-
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">What I Know</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-sub">A versatile skill set spanning backend, frontend, databases, and dev tools — ready to contribute from day one.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-code"></i></div><div class="skill-card-title">Languages</div><div class="skill-items"><span class="skill-item">Java</span><span class="skill-item">Python</span><span class="skill-item">C</span><span class="skill-item">C++</span><span class="skill-item">C#</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-browser"></i></div><div class="skill-card-title">Web Technologies</div><div class="skill-items"><span class="skill-item">HTML5</span><span class="skill-item">CSS3</span><span class="skill-item">JavaScript</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-components"></i></div><div class="skill-card-title">Frameworks</div><div class="skill-items"><span class="skill-item">Spring</span><span class="skill-item">Spring Boot</span><span class="skill-item">React</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-database"></i></div><div class="skill-card-title">Databases</div><div class="skill-items"><span class="skill-item">MySQL</span><span class="skill-item">PostgreSQL</span><span class="skill-item">MongoDB</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-tool"></i></div><div class="skill-card-title">Tools &amp; Platforms</div><div class="skill-items"><span class="skill-item">Git</span><span class="skill-item">GitHub</span><span class="skill-item">Power BI</span><span class="skill-item">Excel</span><span class="skill-item">AWS</span></div></div>
+      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-brain"></i></div><div class="skill-card-title">Interests</div><div class="skill-items"><span class="skill-item">AI / ML</span><span class="skill-item">Full Stack</span><span class="skill-item">Chatbots</span><span class="skill-item">Data Analytics</span></div></div>
     </div>
-  </section>
-
-  <footer>
-    <p>© 2026 Arunkumar Murugan • arunml2205@gmail.com </p>
-  </footer>
-
-  <script>
-    // Navbar scroll effect
-    
-  </script>
-
+  </div>
+</section>
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">What I've Built</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Academic, self-learning, and real-world projects that demonstrate applied skills across the stack.</p>
+    <div class="projects-grid">
+      <div class="project-card"><div class="project-accent pa-blue"></div><div class="project-icon pi-blue"><i class="ti ti-robot"></i></div><div class="project-title">Student Support Chatbot</div><p class="project-desc">An intelligent AI-powered chatbot designed to assist students with academic queries, schedules, and campus information. Built as a live GitHub Pages deployment with an intuitive conversational interface.</p><div class="project-tags"><span class="ptag ptag-blue">JavaScript</span><span class="ptag ptag-blue">HTML/CSS</span><span class="ptag ptag-blue">AI / NLP</span><span class="ptag ptag-blue">GitHub Pages</span></div><a href="https://github.com/arun-sw/Students_Support_chatBot" class="project-link" target="_blank">View on GitHub<i class="ti ti-arrow-right"></i></a></div>
+      <div class="project-card"><div class="project-accent pa-green"></div><div class="project-icon pi-green"><i class="ti ti-server"></i></div><div class="project-title">Java Full-Stack Web App</div><p class="project-desc">A full-stack application built with Spring Boot backend and React frontend, integrating MySQL for data persistence. Demonstrates REST API design, authentication, and component-based UI architecture.</p><div class="project-tags"><span class="ptag ptag-green">Spring Boot</span><span class="ptag ptag-green">React</span><span class="ptag ptag-green">MySQL</span><span class="ptag ptag-green">REST API</span></div><a href="https://github.com/arun-sw" class="project-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a></div>
+      <div class="project-card"><div class="project-accent pa-red"></div><div class="project-icon pi-red"><i class="ti ti-chart-bar"></i></div><div class="project-title">Data Analytics Dashboard</div><p class="project-desc">An interactive Power BI dashboard analyzing academic and organizational datasets. Showcases data visualization, DAX formulas, and storytelling through charts and KPIs for actionable insights.</p><div class="project-tags"><span class="ptag ptag-red">Power BI</span><span class="ptag ptag-red">SQL</span><span class="ptag ptag-red">Excel</span><span class="ptag ptag-red">DAX</span></div><a href="https://github.com/arun-sw" class="project-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+<section class="chatbot-section" id="chatbot">
+  <div class="section-inner">
+    <div class="chatbot-showcase">
+      <div class="chatbot-preview">
+        <div class="chat-header"><div class="chat-dot cd-r"></div><div class="chat-dot cd-y"></div><div class="chat-dot cd-g"></div><span class="chat-title">Student Support Bot</span><span class="chat-status"><i class="ti ti-circle-filled" style="font-size:8px"></i> Online</span></div>
+        <div class="chat-body">
+          <div class="msg msg-bot">👋 Hi! I'm your Student Support Assistant. How can I help you today?</div>
+          <div class="msg msg-user">What are today's class timings?</div>
+          <div class="msg msg-bot">Your schedule for today: 9 AM — Data Structures, 11 AM — DBMS Lab, 2 PM — Java Programming. Need anything else?</div>
+          <div class="msg msg-user">Tell me about upcoming exams</div>
+          <div class="msg msg-bot">📅 Internal exams are scheduled for next week. Timetable has been uploaded to the portal. Want me to set a reminder?</div>
+        </div>
+        <div class="chat-input"><span>Type a message...</span><button class="send-btn"><i class="ti ti-send"></i></button></div>
+      </div>
+      <div class="chatbot-info">
+        <div class="section-label">Featured Project</div>
+        <h3>Student Support<br>Chatbot</h3>
+        <p>A smart conversational assistant built for students — answers academic queries, shares schedules, and provides campus support through a natural chat interface. Deployed live on GitHub Pages.</p>
+        <div class="feature-list">
+          <div class="feature-item"><i class="ti ti-message-chatbot feat-icon"></i><div class="feat-text"><strong>AI-powered responses</strong> — context-aware answers to student questions</div></div>
+          <div class="feature-item"><i class="ti ti-calendar feat-icon"></i><div class="feat-text"><strong>Schedule assistance</strong> — class timings, exam dates, and reminders</div></div>
+          <div class="feature-item"><i class="ti ti-device-mobile feat-icon"></i><div class="feat-text"><strong>Responsive design</strong> — seamless experience on any device</div></div>
+          <div class="feature-item"><i class="ti ti-brand-github feat-icon"></i><div class="feat-text"><strong>Live on GitHub Pages</strong> — fully deployed, accessible anywhere</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; Achievements</h2>
+    <p class="section-sub">Industry-recognized certifications from AWS, IBM, Microsoft, Infosys, and more — validating hands-on expertise.</p>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-icon-box ci-aws"><i class="ti ti-cloud"></i></div><div class="cert-body"><div class="cert-name">Introduction to AWS Solutions</div><div class="cert-org">Amazon Web Services</div><div class="cert-year">Sep 2024</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-infosys"><i class="ti ti-code"></i></div><div class="cert-body"><div class="cert-name">Java for Beginners</div><div class="cert-org">Infosys</div><div class="cert-year">Jul 2024</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-ms"><i class="ti ti-brand-windows"></i></div><div class="cert-body"><div class="cert-name">Generative AI with Copilot in Bing</div><div class="cert-org">Microsoft Learn</div><div class="cert-year">Sep 2024</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-mysql"><i class="ti ti-database"></i></div><div class="cert-body"><div class="cert-name">MySQL Intermediate</div><div class="cert-org">Knest</div><div class="cert-year">Apr 2025</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-ibm"><i class="ti ti-layers-intersect"></i></div><div class="cert-body"><div class="cert-name">Full Stack Certification</div><div class="cert-org">IBM Cloud · Digilabs</div><div class="cert-year">2024</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-ai"><i class="ti ti-brain"></i></div><div class="cert-body"><div class="cert-name">AI for Beginners Certificate</div><div class="cert-org">HP LIFE</div><div class="cert-year">2025</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-ai"><i class="ti ti-robot"></i></div><div class="cert-body"><div class="cert-name">Artificial Intelligence Internship</div><div class="cert-org">Refinement Software Solutions Pvt. Ltd</div><div class="cert-year">2025</div></div></div>
+      <div class="cert-card"><div class="cert-icon-box ci-hr"><i class="ti ti-award"></i></div><div class="cert-body"><div class="cert-name">Software Engineer Accomplishment</div><div class="cert-org">HackerRank</div><div class="cert-year">2025</div></div></div>
+    </div>
+  </div>
+</section>
+<section class="edu-section" id="education">
+  <div class="section-inner">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Education</h2>
+    <p class="section-sub">Academic foundation from Bharathiyar University, blending computer science theory with practical programming skills.</p>
+    <div class="edu-timeline">
+      <div class="edu-item"><div class="edu-year">2023 – 2026</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">Bachelor of Computer Applications (BCA)</div><div class="edu-inst">VLB Janakiammal College of Arts &amp; Science · Bharathiyar University</div><span class="edu-score">80% · Graduating 2026</span></div></div>
+      <div class="edu-item"><div class="edu-year">2021 – 2023</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">HSC — Commerce, History, Economics &amp; Accountancy</div><div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div><span class="edu-score">83%</span></div></div>
+      <div class="edu-item"><div class="edu-year">2021</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">SSLC — General</div><div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div><span class="edu-score">Passed</span></div></div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-sub">Open to internships, entry-level roles, and collaboration on exciting projects. Let's build something together!</p>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>I'm actively looking for my first professional opportunity in software development or web technologies. Whether you have a role, a project idea, or just want to chat tech — reach out!</p>
+        <div class="contact-links">
+          <a href="mailto:arunml2205@gmail.com" class="contact-link"><i class="ti ti-mail cl-icon"></i>arunml2205@gmail.com</a>
+          <a href="tel:+918667753191" class="contact-link"><i class="ti ti-phone cl-icon"></i>+91 8667753191</a>
+          <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="contact-link" target="_blank"><i class="ti ti-brand-linkedin cl-icon"></i>linkedin.com/in/arunkumar-murugan</a>
+          <a href="https://github.com/arun-sw" class="contact-link" target="_blank"><i class="ti ti-brand-github cl-icon"></i>github.com/arun-sw</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Send a Message</div>
+        <div class="form-row"><label>Your Name</label><input type="text" placeholder="e.g.megha"></div>
+        <div class="form-row"><label>Email</label><input type="email" placeholder="you@company.com"></div>
+        <div class="form-row"><label>Message</label><textarea placeholder="Hi Arunkumar, I'd like to discuss..."></textarea></div>
+        <button class="btn-primary" style="width:100%; justify-content:center;" onclick="alert('Thank you! Reach out directly at arunml2205@gmail.com')"><i class="ti ti-send"></i> Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div>Designed &amp; built by <span>Arunkumar Murugan</span> · Coimbatore, Tamil Nadu</div>
+  <div style="margin-top:6px">BCA Final Year · Bharathiyar University · <span>2026</span></div>
+</footer>
 </body>
 </html>
