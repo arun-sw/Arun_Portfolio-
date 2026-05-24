@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arunkumar Murugan — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Tabler Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f; --card: #1a1a24;
     --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
@@ -17,380 +19,488 @@
     --tag-bg: rgba(108,99,255,0.15); --tag-color: #a09cff;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text); }
-  .hero { min-height: 100vh; padding: 120px 5% 80px; display: flex; align-items: center; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(108,99,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,212,170,0.08) 0%, transparent 60%); }
-  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3); color: var(--tag-color); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 20px; margin-bottom: 20px; }
-  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); display: inline-block; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
- 
-  h1 { font-family: 'Syne', sans-serif; font-size: clamp(38px, 5vw, 62px); font-weight: 800; line-height: 1.05; letter-spacing: -1px; margin-bottom: 20px; }
-  .h1-gradient { background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .hero-desc { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 460px; margin-bottom: 32px; }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary { background: var(--accent); color: #fff; padding: 11px 24px; border-radius: 10px; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s, transform 0.15s; }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn-secondary { background: transparent; color: var(--text); padding: 11px 24px; border-radius: 10px; border: 1px solid var(--border2); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s, transform 0.15s; }
-  .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; }
-  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
-  .avatar-ring { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 16px; }
-  .hero-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .hero-role { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-  .stat-row { display: flex; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
-  .stat { text-align: center; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  .navbar { background: rgba(10,10,15,0.88) !important; backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); height: 62px; }
+  .navbar-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-link { color: var(--muted) !important; font-size: 13px; font-weight: 500; letter-spacing: 0.4px; transition: color 0.2s; padding: 0 4px !important; }
+  .nav-link:hover { color: var(--text) !important; }
+  .navbar-toggler { border-color: var(--border2); }
+  .navbar-toggler-icon { filter: invert(1); }
+  .navbar-collapse { background: rgba(10,10,15,0.97); padding: 12px 20px; border-radius: 0 0 12px 12px; }
+
+  /* ── HERO ── */
+  .hero-section { min-height: 100vh; padding: 110px 0 70px; position: relative; overflow: hidden; display: flex; align-items: center; }
+  .hero-bg { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(108,99,255,0.13) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 15% 80%, rgba(0,212,170,0.08) 0%, transparent 60%); }
+  .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3); color: var(--tag-color); font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 18px; }
+  .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(40px, 6vw, 66px); font-weight: 800; line-height: 1.04; letter-spacing: -1.5px; margin-bottom: 18px; }
+  .hero-title .grad { background: linear-gradient(135deg, #fff 25%, var(--accent) 65%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 28px; }
+
+  /* Buttons */
+  .btn-grad { background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 500; padding: 10px 22px; display: inline-flex; align-items: center; gap: 7px; transition: opacity .2s, transform .15s; text-decoration: none; }
+  .btn-grad:hover { opacity: .85; transform: translateY(-2px); color: #fff; }
+  .btn-out { background: transparent; color: var(--text); border: 1px solid var(--border2); border-radius: 10px; font-size: 14px; font-weight: 500; padding: 10px 22px; display: inline-flex; align-items: center; gap: 7px; transition: border-color .2s, transform .15s; text-decoration: none; }
+  .btn-out:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+
+  /* Hero Card */
+  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 30px; position: relative; overflow: hidden; }
+  .hero-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3)); }
+  .avatar-circle { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff; }
+  .stag { background: var(--tag-bg); color: var(--tag-color); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 6px; display: inline-block; margin: 2px; }
+  .stat-box { text-align: center; }
   .stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--accent); }
-  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
-  .stag { background: var(--tag-bg); color: var(--tag-color); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
-  section { padding: 80px 5%; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-label { font-size: 11px; letter-spacing: 2px; font-weight: 600; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; margin-bottom: 12px; line-height: 1.15; }
-  .section-sub { font-size: 15px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
-  .skills-section { background: var(--bg2); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; transition: border-color 0.25s, transform 0.2s; }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .skill-card-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); margin-bottom: 12px; }
-  .skill-card-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
-  .skill-items { display: flex; flex-wrap: wrap; gap: 5px; }
-  .skill-item { font-size: 11px; background: var(--bg3); color: var(--muted); padding: 3px 9px; border-radius: 5px; border: 1px solid var(--border); }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.2s; display: flex; flex-direction: column; }
-  .project-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
-  .project-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .pa-blue { background: linear-gradient(90deg, var(--accent), #a78bfa); }
-  .pa-green { background: linear-gradient(90deg, var(--accent2), #4ade80); }
-  .pa-red { background: linear-gradient(90deg, var(--accent3), #f97316); }
-  .project-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-  .pi-blue { background: rgba(108,99,255,0.15); color: var(--accent); }
-  .pi-green { background: rgba(0,212,170,0.12); color: var(--accent2); }
-  .pi-red { background: rgba(255,107,107,0.12); color: var(--accent3); }
-  .project-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 16px; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .ptag { font-size: 11px; padding: 3px 9px; border-radius: 5px; border: 1px solid; font-weight: 500; }
-  .ptag-blue { background: rgba(108,99,255,0.1); color: #a09cff; border-color: rgba(108,99,255,0.25); }
-  .ptag-green { background: rgba(0,212,170,0.08); color: #5eead4; border-color: rgba(0,212,170,0.2); }
-  .ptag-red { background: rgba(255,107,107,0.08); color: #fca5a5; border-color: rgba(255,107,107,0.2); }
-  .project-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent2); font-size: 13px; font-weight: 500; text-decoration: none; transition: gap 0.2s; }
-  .project-link:hover { gap: 8px; }
-  .chatbot-section { background: var(--bg2); }
-  .chatbot-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  .chatbot-preview { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
-  .chat-header { background: var(--bg3); padding: 14px 18px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
-  .chat-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .cd-r { background: #ff5f57; } .cd-y { background: #febc2e; } .cd-g { background: #28c840; }
-  .chat-title { font-size: 13px; font-weight: 600; margin-left: 4px; }
-  .chat-status { margin-left: auto; font-size: 11px; color: var(--accent2); display: flex; align-items: center; gap: 4px; }
-  .chat-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-  .msg { max-width: 80%; font-size: 13px; line-height: 1.55; padding: 10px 14px; border-radius: 12px; }
-  .msg-bot { background: var(--bg3); color: var(--text); border-bottom-left-radius: 3px; align-self: flex-start; }
-  .msg-user { background: var(--accent); color: #fff; border-bottom-right-radius: 3px; align-self: flex-end; }
-  .chat-input { margin: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
-  .chat-input span { font-size: 12px; color: var(--muted); }
-  .send-btn { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; }
-  .chatbot-info h3 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
-  .chatbot-info p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
-  .feature-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .feature-item { display: flex; align-items: flex-start; gap: 10px; }
-  .feat-icon { color: var(--accent2); font-size: 16px; margin-top: 2px; }
-  .feat-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
-  .feat-text strong { color: var(--text); }
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.2s; }
-  .cert-card:hover { border-color: var(--border2); }
-  .cert-icon-box { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-  .ci-aws { background: rgba(255,153,0,0.12); color: #fb923c; }
-  .ci-infosys { background: rgba(108,99,255,0.12); color: var(--accent); }
-  .ci-ms { background: rgba(0,120,212,0.12); color: #60a5fa; }
-  .ci-mysql { background: rgba(0,212,170,0.12); color: var(--accent2); }
-  .ci-ai { background: rgba(255,107,107,0.12); color: var(--accent3); }
-  .ci-ibm { background: rgba(20,184,166,0.12); color: #2dd4bf; }
-  .ci-hp { background: rgba(108,99,255,0.12); color: #c4b5fd; }
-  .ci-hr { background: rgba(0,212,170,0.12); color: #34d399; }
-  .cert-body { flex: 1; }
-  .cert-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+  .stat-label { font-size: 10px; color: var(--muted); }
+
+  /* ── SECTIONS ── */
+  .sec-alt { background: var(--bg2); }
+  .sec-label { font-size: 11px; letter-spacing: 2px; font-weight: 600; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+  .sec-sub { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 560px; }
+
+  /* ── SKILL CARDS ── */
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; height: 100%; transition: border-color .25s, transform .2s; }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .skill-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accent); margin-bottom: 12px; }
+  .skill-card h6 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+  .skill-pill { font-size: 11px; background: var(--bg3); color: var(--muted); padding: 3px 9px; border-radius: 5px; border: 1px solid var(--border); display: inline-block; margin: 2px; }
+
+  /* ── PROJECT CARDS ── */
+  .proj-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; height: 100%; position: relative; overflow: hidden; transition: border-color .25s, transform .2s; display: flex; flex-direction: column; }
+  .proj-card:hover { border-color: var(--accent2); transform: translateY(-5px); }
+  .proj-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .s-blue { background: linear-gradient(90deg, var(--accent), #a78bfa); }
+  .s-green { background: linear-gradient(90deg, var(--accent2), #4ade80); }
+  .s-red { background: linear-gradient(90deg, var(--accent3), #f97316); }
+  .proj-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+  .pi-b { background: rgba(108,99,255,0.15); color: var(--accent); }
+  .pi-g { background: rgba(0,212,170,0.12); color: var(--accent2); }
+  .pi-r { background: rgba(255,107,107,0.12); color: var(--accent3); }
+  .proj-card h5 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .proj-card p { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .ptag { font-size: 11px; padding: 3px 9px; border-radius: 5px; border: 1px solid; font-weight: 500; display: inline-block; margin: 2px; }
+  .pt-b { background: rgba(108,99,255,0.1); color: #a09cff; border-color: rgba(108,99,255,0.25); }
+  .pt-g { background: rgba(0,212,170,0.08); color: #5eead4; border-color: rgba(0,212,170,0.2); }
+  .pt-r { background: rgba(255,107,107,0.08); color: #fca5a5; border-color: rgba(255,107,107,0.2); }
+  .proj-link { color: var(--accent2); font-size: 13px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: gap .2s; }
+  .proj-link:hover { gap: 9px; color: var(--accent2); }
+
+  /* ── CHATBOT DEEP DIVE ── */
+  .arch-box { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+  .arch-step { text-align: center; padding: 14px 12px; background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; min-width: 100px; flex: 1; }
+  .arch-arrow { color: var(--accent); font-size: 18px; padding: 0 4px; }
+  .chat-window { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+  .chat-bar { background: var(--bg3); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .cd { width: 9px; height: 9px; border-radius: 50%; }
+  .cd-r{background:#ff5f57} .cd-y{background:#febc2e} .cd-g{background:#28c840}
+  .chat-msgs { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; font-size: 13px; line-height: 1.55; padding: 10px 14px; border-radius: 12px; }
+  .m-bot { background: var(--bg3); color: var(--text); border-bottom-left-radius: 3px; align-self: flex-start; }
+  .m-usr { background: var(--accent); color: #fff; border-bottom-right-radius: 3px; align-self: flex-end; }
+  .chat-input-bar { margin: 6px 10px 10px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .send-btn { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
+  .feat-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+  .feat-ic { color: var(--accent2); font-size: 17px; margin-top: 2px; flex-shrink: 0; }
+  .feat-txt { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .feat-txt strong { color: var(--text); }
+  .tech-pill { font-size: 11px; padding: 4px 11px; border-radius: 6px; font-weight: 500; display: inline-block; margin: 3px; }
+
+  /* ── CERTS ── */
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 13px; padding: 16px; display: flex; align-items: flex-start; gap: 12px; transition: border-color .2s, transform .2s; height: 100%; }
+  .cert-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .cert-ico { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .ci-aws{background:rgba(255,153,0,.12);color:#fb923c}
+  .ci-inf{background:rgba(108,99,255,.12);color:var(--accent)}
+  .ci-ms{background:rgba(0,120,212,.12);color:#60a5fa}
+  .ci-sql{background:rgba(0,212,170,.12);color:var(--accent2)}
+  .ci-ibm{background:rgba(20,184,166,.12);color:#2dd4bf}
+  .ci-ai{background:rgba(255,107,107,.12);color:var(--accent3)}
+  .ci-hr{background:rgba(0,212,170,.12);color:#34d399}
+  .cert-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 3px; }
   .cert-org { font-size: 11px; color: var(--muted); }
-  .cert-year { font-size: 10px; font-weight: 600; color: var(--tag-color); background: var(--tag-bg); padding: 2px 7px; border-radius: 4px; margin-top: 6px; display: inline-block; }
-  .edu-section { background: var(--bg2); }
-  .edu-timeline { display: flex; flex-direction: column; gap: 0; }
-  .edu-item { display: grid; grid-template-columns: 120px 1fr; gap: 0 24px; position: relative; padding-bottom: 32px; }
+  .cert-yr { font-size: 10px; font-weight: 600; color: var(--tag-color); background: var(--tag-bg); padding: 2px 7px; border-radius: 4px; margin-top: 5px; display: inline-block; }
+
+  /* ── EDUCATION TIMELINE ── */
+  .edu-item { position: relative; padding-left: 28px; padding-bottom: 32px; }
   .edu-item:last-child { padding-bottom: 0; }
-  .edu-year { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--accent); text-align: right; padding-top: 4px; }
-  .edu-line { position: relative; padding-left: 24px; }
-  .edu-line::before { content: ''; position: absolute; left: -1px; top: 10px; bottom: -32px; width: 1px; background: var(--border); }
-  .edu-item:last-child .edu-line::before { display: none; }
-  .edu-dot { position: absolute; left: -6px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg2); }
-  .edu-degree { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .edu-item::before { content:''; position:absolute; left:5px; top:12px; bottom:0; width:1px; background:var(--border); }
+  .edu-item:last-child::before { display:none; }
+  .edu-dot { position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--bg2); }
+  .edu-yr { font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+  .edu-deg { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 2px; }
   .edu-inst { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
-  .edu-score { font-size: 12px; font-weight: 500; color: var(--accent2); background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); padding: 2px 8px; border-radius: 5px; display: inline-block; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-  .contact-text p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-  .contact-links { display: flex; flex-direction: column; gap: 12px; }
-  .contact-link { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-size: 14px; padding: 12px 16px; border-radius: 11px; background: var(--card); border: 1px solid var(--border); transition: border-color 0.2s; }
-  .contact-link:hover { border-color: var(--accent); }
-  .cl-icon { color: var(--accent); font-size: 18px; width: 20px; }
-  .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
-  .form-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 20px; }
-  .form-row { margin-bottom: 14px; }
-  .form-row label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
-  .form-row input, .form-row textarea { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; resize: none; }
-  .form-row input:focus, .form-row textarea:focus { border-color: var(--accent); }
-  .form-row textarea { height: 90px; }
-  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 28px 5%; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.8; }
+  .edu-score { font-size: 12px; color: var(--accent2); background: rgba(0,212,170,.08); border: 1px solid rgba(0,212,170,.2); padding: 2px 8px; border-radius: 5px; display: inline-block; }
+
+  /* ── CONTACT ── */
+  .contact-link { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-size: 14px; padding: 13px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--border); transition: border-color .2s; margin-bottom: 10px; }
+  .contact-link:hover { border-color: var(--accent); color: var(--text); }
+  .cl-ic { color: var(--accent); font-size: 18px; }
+  .contact-form-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+  .form-control, .form-control:focus { background: var(--bg3) !important; border: 1px solid var(--border) !important; color: var(--text) !important; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; box-shadow: none !important; }
+  .form-control::placeholder { color: var(--muted); }
+  .form-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .form-control:focus { border-color: var(--accent) !important; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.9; }
   footer span { color: var(--accent2); }
-  ::-webkit-scrollbar { width: 6px; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .fadeup { animation: fadeUp 0.7s ease both; }
-  .d1{animation-delay:0.1s} .d2{animation-delay:0.25s} .d3{animation-delay:0.4s} .d4{animation-delay:0.55s}
-  @media (max-width: 768px) {
-    .hero-grid, .chatbot-showcase, .contact-grid { grid-template-columns: 1fr; }
-    .hero-card { display: none; }
-    nav { padding: 0 4%; }
-    .nav-links { gap: 14px; }
-    .nav-links a { font-size: 12px; }
-    .hero { min-height: unset; padding: 90px 5% 50px; align-items: flex-start; }
-    .hero-grid { gap: 24px; }
-    h1 { font-size: 38px; margin-bottom: 14px; }
-    .hero-desc { font-size: 14px; margin-bottom: 24px; }
-    .hero-badge { margin-bottom: 14px; }
-    .hero-ctas { gap: 10px; }
-    .btn-primary, .btn-secondary { padding: 10px 18px; font-size: 13px; }
-    section { padding: 52px 5%; }
-    .section-title { font-size: 26px; }
-    .section-sub { font-size: 14px; margin-bottom: 32px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .certs-grid { grid-template-columns: 1fr; }
-    .chatbot-showcase { gap: 28px; }
-    .edu-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
-    .contact-grid { gap: 24px; }
-  }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  .fu { animation: fadeUp .7s ease both; }
+  .d1{animation-delay:.1s} .d2{animation-delay:.25s} .d3{animation-delay:.4s}
 </style>
 </head>
 <body>
-<nav>
-  <div class="nav-logo">AM</div>
-  <div class="nav-links">
-    <a href="#about">About</a><a href="#skills">Skills</a>
-    <a href="#projects">Projects</a><a href="#certifications">Certs</a><a href="#contact">Contact</a>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#about">AM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-lg-3 gap-2 py-2 py-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#chatbot">Chatbot</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
-<section class="hero" id="about">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-section" id="about">
   <div class="hero-bg"></div>
-  <div class="hero-grid">
-    <div class="fadeup d1">
-      
-      <h1><span class="h1-gradient">Arunkumar<br>Murugan</span></h1>
-      <p class="hero-desc">A passionate full-stack developer &amp; BCA student building real-world Java applications, AI-powered chatbots, and modern web solutions. Turning ideas into elegant, functional software.</p>
-      <div class="hero-ctas">
-        <a href="https://github.com/arun-sw" class="btn-primary" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
-        <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="btn-secondary" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
-        <a href="mailto:arunml2205@gmail.com" class="btn-secondary"><i class="ti ti-mail"></i> Email Me</a>
-      </div>
-    </div>
-    <div class="fadeup d3">
-      <div class="hero-card">
-        <div class="avatar-ring">AM</div>
-        <div class="hero-name">Arunkumar Murugan</div>
-        <div class="hero-role">Java Full-Stack Developer · BCA Final Year · Coimbatore</div>
-        <div class="skill-tags"><span class="stag">Java</span><span class="stag">Spring Boot</span><span class="stag">React</span><span class="stag">MySQL</span><span class="stag">Python</span><span class="stag">MongoDB</span></div>
-        <div class="stat-row">
-          <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Languages</div></div>
-          <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Certs</div></div>
-          <div class="stat"><div class="stat-num">80%</div><div class="stat-label">BCA Score</div></div>
-          <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Graduate</div></div>
+  <div class="container position-relative z-1">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 fu d1">
+        
+        <h1 class="hero-title"><span class="grad">Arunkumar<br>Murugan</span></h1>
+        <p class="hero-desc">A passionate full-stack developer &amp; BCA student building real-world Java applications, AI-powered chatbots, and modern web solutions. Turning ideas into elegant, functional software.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="https://github.com/arun-sw" class="btn-grad" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+          <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="btn-out" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+          <a href="mailto:arunml2205@gmail.com" class="btn-out"><i class="ti ti-mail"></i> Email Me</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<section class="skills-section" id="skills">
-  <div class="section-inner">
-    <div class="section-label">What I Know</div>
-    <h2 class="section-title">Technical Skills</h2>
-    <p class="section-sub">A versatile skill set spanning backend, frontend, databases, and dev tools — ready to contribute from day one.</p>
-    <div class="skills-grid">
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-code"></i></div><div class="skill-card-title">Languages</div><div class="skill-items"><span class="skill-item">Java</span><span class="skill-item">Python</span><span class="skill-item">C</span><span class="skill-item">C++</span><span class="skill-item">C#</span></div></div>
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-browser"></i></div><div class="skill-card-title">Web Technologies</div><div class="skill-items"><span class="skill-item">HTML5</span><span class="skill-item">CSS3</span><span class="skill-item">JavaScript</span></div></div>
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-components"></i></div><div class="skill-card-title">Frameworks</div><div class="skill-items"><span class="skill-item">Spring</span><span class="skill-item">Spring Boot</span><span class="skill-item">React</span></div></div>
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-database"></i></div><div class="skill-card-title">Databases</div><div class="skill-items"><span class="skill-item">MySQL</span><span class="skill-item">PostgreSQL</span><span class="skill-item">MongoDB</span></div></div>
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-tool"></i></div><div class="skill-card-title">Tools &amp; Platforms</div><div class="skill-items"><span class="skill-item">Git</span><span class="skill-item">GitHub</span><span class="skill-item">Power BI</span><span class="skill-item">Excel</span><span class="skill-item">AWS</span><span class="skill-item">Android Studio</span><span class="skill-item">Pinecone</span><span class="skill-item">FastAPI</span></div></div>
-      <div class="skill-card"><div class="skill-card-icon"><i class="ti ti-brain"></i></div><div class="skill-card-title">Interests</div><div class="skill-items"><span class="skill-item">AI / ML</span><span class="skill-item">Full Stack</span><span class="skill-item">Chatbots</span><span class="skill-item">Data Analytics</span></div></div>
-    </div>
-  </div>
-</section>
-<section id="projects">
-  <div class="section-inner">
-    <div class="section-label">What I've Built</div>
-    <h2 class="section-title">Projects</h2>
-    <p class="section-sub">Academic, self-learning, and real-world projects that demonstrate applied skills across the stack.</p>
-    <div class="projects-grid">
-      <div class="project-card" style="border-color:rgba(108,99,255,0.35);"><div class="project-accent pa-blue"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;"><div class="project-icon pi-blue" style="margin-bottom:0"><i class="ti ti-robot"></i></div></div><div class="project-title" style="margin-top:12px;">VLB College Student Support Chatbot</div><p class="project-desc">RAG-based AI chatbot for VLB Janakiammal College. Admin uploads PDFs (fees, admissions, exams) → system chunks & embeds via OpenAI → stores in Pinecone. Students ask questions in any language, get instant accurate answers 24/7. Android app frontend built in Java (Android Studio).</p><div class="project-tags"><span class="ptag ptag-blue">Python</span><span class="ptag ptag-blue">FastAPI</span><span class="ptag ptag-blue">RAG</span><span class="ptag ptag-blue">OpenAI</span><span class="ptag ptag-blue">Pinecone</span><span class="ptag ptag-blue">MongoDB</span><span class="ptag ptag-blue">Android (Java)</span><span class="ptag ptag-blue">OpenRouter</span></div><a href="https://github.com/arun-sw" class="project-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a></div>
-      <div class="project-card"><div class="project-accent pa-green"></div><div class="project-icon pi-green"><i class="ti ti-server"></i></div><div class="project-title">Java Full-Stack Web App</div><p class="project-desc">A full-stack application built with Spring Boot backend and React frontend, integrating MySQL for data persistence. Demonstrates REST API design, authentication, and component-based UI architecture.</p><div class="project-tags"><span class="ptag ptag-green">Spring Boot</span><span class="ptag ptag-green">React</span><span class="ptag ptag-green">MySQL</span><span class="ptag ptag-green">REST API</span></div><a href="https://github.com/arun-sw" class="project-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a></div>
-      <div class="project-card"><div class="project-accent pa-red"></div><div class="project-icon pi-red"><i class="ti ti-chart-bar"></i></div><div class="project-title">Data Analytics Dashboard</div><p class="project-desc">An interactive Power BI dashboard analyzing academic and organizational datasets. Showcases data visualization, DAX formulas, and storytelling through charts and KPIs for actionable insights.</p><div class="project-tags"><span class="ptag ptag-red">Power BI</span><span class="ptag ptag-red">SQL</span><span class="ptag ptag-red">Excel</span><span class="ptag ptag-red">DAX</span></div><a href="https://github.com/arun-sw" class="project-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a></div>
-    </div>
-  </div>
-</section>
-<section class="chatbot-section" id="chatbot">
-  <div class="section-inner">
-    <div class="section-label">Deep Dive</div>
-    <h2 class="section-title" style="margin-bottom:8px;">VLB College Student Support Chatbot</h2>
-    <p style="font-size:14px;color:var(--muted);line-height:1.7;max-width:700px;margin-bottom:40px;">A production-grade RAG-powered AI chatbot built for VLB Janakiammal College of Arts and Science — making college information available 24/7 in 6 languages, with zero human intervention needed.</p>
-
-    <!-- Architecture Flow -->
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:28px;">
-      <div style="font-size:12px;font-weight:600;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;">System Architecture — RAG Pipeline</div>
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0;">
-        <div style="text-align:center;padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;min-width:110px;">
-          <div style="font-size:22px;margin-bottom:6px;">📄</div>
-          <div style="font-size:11px;font-weight:600;color:var(--text);">PDF Upload</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Admin Panel</div>
-        </div>
-        <div style="padding:0 6px;color:var(--accent);font-size:18px;">→</div>
-        <div style="text-align:center;padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;min-width:110px;">
-          <div style="font-size:22px;margin-bottom:6px;">✂️</div>
-          <div style="font-size:11px;font-weight:600;color:var(--text);">Chunking</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Text Splitting</div>
-        </div>
-        <div style="padding:0 6px;color:var(--accent);font-size:18px;">→</div>
-        <div style="text-align:center;padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;min-width:110px;">
-          <div style="font-size:22px;margin-bottom:6px;">🔢</div>
-          <div style="font-size:11px;font-weight:600;color:var(--text);">Embeddings</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">OpenAI API</div>
-        </div>
-        <div style="padding:0 6px;color:var(--accent);font-size:18px;">→</div>
-        <div style="text-align:center;padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;min-width:110px;">
-          <div style="font-size:22px;margin-bottom:6px;">🗄️</div>
-          <div style="font-size:11px;font-weight:600;color:var(--text);">Pinecone DB</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Vector Store</div>
-        </div>
-        <div style="padding:0 6px;color:var(--accent2);font-size:18px;">→</div>
-        <div style="text-align:center;padding:14px 16px;background:rgba(0,212,170,0.05);border:1px solid rgba(0,212,170,0.2);border-radius:12px;min-width:110px;">
-          <div style="font-size:22px;margin-bottom:6px;">🤖</div>
-          <div style="font-size:11px;font-weight:600;color:var(--accent2);">AI Answer</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px;">OpenRouter LLM</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Two column: chat preview + features -->
-    <div class="chatbot-showcase">
-      <div class="chatbot-preview">
-        <div class="chat-header">
-          <div class="chat-dot cd-r"></div><div class="chat-dot cd-y"></div><div class="chat-dot cd-g"></div>
-          <span class="chat-title">VLB Student Support Bot</span>
-          <span class="chat-status"><i class="ti ti-circle-filled" style="font-size:8px"></i> Online</span>
-        </div>
-        <div class="chat-body">
-          <div class="msg msg-bot">👋 Hello! I am the VLB College Student Support Assistant. How can I help you today?</div>
-          <div class="msg msg-user">What is the fee structure for BCA?</div>
-          <div class="msg msg-bot">📋 BCA Annual Fee: ₹18,500 (tuition) + ₹2,200 (lab) + ₹1,500 (exam fee). Scholarships available for BC/MBC students. Shall I explain the payment process?</div>
-          <div class="msg msg-user">What is the admission process?</div>
-          <div class="msg msg-bot">BCA Admission: 10+2 pass with 45% minimum. Apply online at vlbjcas.edu.in → Submit marksheet + TC → Counselling on July 15. Do you need more details?</div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin:4px 8px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:11px;color:var(--muted);">Supports Tamil, Hindi, Telugu, English &amp; more...</span>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <span style="font-size:10px;color:var(--accent2);background:rgba(0,212,170,0.1);padding:2px 7px;border-radius:5px;">🟢 Excellent — 0.8s</span>
-            <button class="send-btn"><i class="ti ti-send"></i></button>
+      <div class="col-lg-6 fu d3">
+        <div class="hero-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="avatar-circle">AM</div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">Arunkumar Murugan</div>
+              <div style="font-size:12px;color:var(--muted);">Java Full-Stack Developer · BCA Final Year · Coimbatore</div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <span class="stag">Java</span><span class="stag">Spring Boot</span><span class="stag">React</span>
+            <span class="stag">Python</span><span class="stag">MySQL</span><span class="stag">MongoDB</span>
+          </div>
+          <div class="row g-2 pt-3" style="border-top:1px solid var(--border)">
+            <div class="col-3 stat-box"><div class="stat-num">5+</div><div class="stat-label">Languages</div></div>
+            <div class="col-3 stat-box"><div class="stat-num">8+</div><div class="stat-label">Certs</div></div>
+            <div class="col-3 stat-box"><div class="stat-num">80%</div><div class="stat-label">BCA Score</div></div>
+            <div class="col-3 stat-box"><div class="stat-num">2026</div><div class="stat-label">Graduate</div></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="chatbot-info">
-        <div class="feature-list">
-          <div class="feature-item"><i class="ti ti-file-upload feat-icon"></i><div class="feat-text"><strong>Smart Document Ingestion</strong> — Admin uploads fee PDFs, admission guides, exam schedules. System auto-chunks, embeds &amp; indexes into Pinecone.</div></div>
-          <div class="feature-item"><i class="ti ti-language feat-icon"></i><div class="feat-text"><strong>6-Language Multilingual</strong> — Tamil, Hindi, Telugu, Malayalam, Kannada &amp; English. Bot detects and replies in the same language automatically.</div></div>
-          <div class="feature-item"><i class="ti ti-device-mobile feat-icon"></i><div class="feat-text"><strong>Android App Frontend</strong> — Native Android app built in Java using Android Studio with user auth (register/login) and full chat history.</div></div>
-          <div class="feature-item"><i class="ti ti-bolt feat-icon"></i><div class="feat-text"><strong>Speed Monitor</strong> — Built-in performance tracker shows color-coded ratings: Excellent / Good / Average / Slow per request.</div></div>
-          <div class="feature-item"><i class="ti ti-shield-lock feat-icon"></i><div class="feat-text"><strong>Secure Auth + MongoDB</strong> — Student register/login via FastAPI. All chat history &amp; user data persisted in MongoDB.</div></div>
-          <div class="feature-item"><i class="ti ti-server feat-icon"></i><div class="feat-text"><strong>FastAPI Backend</strong> — RESTful API routes: /register, /login, /chat, /upload-doc, /admin. Clean, fast, async Python backend.</div></div>
+<!-- ═══════════ SKILLS ═══════════ -->
+<section class="sec-alt py-5" id="skills">
+  <div class="container py-4">
+    <div class="sec-label">What I Know</div>
+    <h2 class="sec-title">Technical Skills</h2>
+    <p class="sec-sub mb-5">A versatile skill set spanning backend, frontend, databases, and dev tools — ready to contribute from day one.</p>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-code"></i></div>
+          <h6>Languages</h6>
+          <div><span class="skill-pill">Java</span><span class="skill-pill">Python</span><span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">C#</span></div>
         </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-browser"></i></div>
+          <h6>Web Technologies</h6>
+          <div><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">JavaScript</span><span class="skill-pill">Bootstrap 5</span></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-components"></i></div>
+          <h6>Frameworks</h6>
+          <div><span class="skill-pill">Spring</span><span class="skill-pill">Spring Boot</span><span class="skill-pill">React</span><span class="skill-pill">FastAPI</span></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-database"></i></div>
+          <h6>Databases</h6>
+          <div><span class="skill-pill">MySQL</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">MongoDB</span><span class="skill-pill">Pinecone</span></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-tool"></i></div>
+          <h6>Tools &amp; Platforms</h6>
+          <div><span class="skill-pill">Git</span><span class="skill-pill">GitHub</span><span class="skill-pill">Power BI</span><span class="skill-pill">Excel</span><span class="skill-pill">AWS</span><span class="skill-pill">Android Studio</span></div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="ti ti-brain"></i></div>
+          <h6>AI &amp; Interests</h6>
+          <div><span class="skill-pill">RAG</span><span class="skill-pill">OpenAI</span><span class="skill-pill">LLMs</span><span class="skill-pill">Full Stack</span><span class="skill-pill">Data Analytics</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Tech Stack Pills -->
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25);padding:4px 10px;border-radius:6px;font-weight:500;">Python</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25);padding:4px 10px;border-radius:6px;font-weight:500;">FastAPI</span>
-          <span style="font-size:11px;background:rgba(0,212,170,0.08);color:#5eead4;border:1px solid rgba(0,212,170,0.2);padding:4px 10px;border-radius:6px;font-weight:500;">OpenAI Embeddings</span>
-          <span style="font-size:11px;background:rgba(0,212,170,0.08);color:#5eead4;border:1px solid rgba(0,212,170,0.2);padding:4px 10px;border-radius:6px;font-weight:500;">Pinecone</span>
-          <span style="font-size:11px;background:rgba(255,107,107,0.08);color:#fca5a5;border:1px solid rgba(255,107,107,0.2);padding:4px 10px;border-radius:6px;font-weight:500;">OpenRouter LLM</span>
-          <span style="font-size:11px;background:rgba(255,107,107,0.08);color:#fca5a5;border:1px solid rgba(255,107,107,0.2);padding:4px 10px;border-radius:6px;font-weight:500;">MongoDB</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25);padding:4px 10px;border-radius:6px;font-weight:500;">Android (Java)</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25);padding:4px 10px;border-radius:6px;font-weight:500;">RAG</span>
-        </div>
-        <a href="https://github.com/arun-sw" class="btn-primary" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="certifications">
-  <div class="section-inner">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title">Certifications &amp; Achievements</h2>
-    <p class="section-sub">Industry-recognized certifications from AWS, IBM, Microsoft, Infosys, and more — validating hands-on expertise.</p>
-    <div class="certs-grid">
-      <div class="cert-card"><div class="cert-icon-box ci-aws"><i class="ti ti-cloud"></i></div><div class="cert-body"><div class="cert-name">Introduction to AWS Solutions</div><div class="cert-org">Amazon Web Services</div><div class="cert-year">Sep 2024</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-infosys"><i class="ti ti-code"></i></div><div class="cert-body"><div class="cert-name">Java for Beginners</div><div class="cert-org">Infosys</div><div class="cert-year">Jul 2024</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-ms"><i class="ti ti-brand-windows"></i></div><div class="cert-body"><div class="cert-name">Generative AI with Copilot in Bing</div><div class="cert-org">Microsoft Learn</div><div class="cert-year">Sep 2024</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-mysql"><i class="ti ti-database"></i></div><div class="cert-body"><div class="cert-name">MySQL Intermediate</div><div class="cert-org">Knest</div><div class="cert-year">Apr 2025</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-ibm"><i class="ti ti-layers-intersect"></i></div><div class="cert-body"><div class="cert-name">Full Stack Certification</div><div class="cert-org">IBM Cloud · Digilabs</div><div class="cert-year">2024</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-ai"><i class="ti ti-brain"></i></div><div class="cert-body"><div class="cert-name">AI for Beginners Certificate</div><div class="cert-org">HP LIFE</div><div class="cert-year">2025</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-ai"><i class="ti ti-robot"></i></div><div class="cert-body"><div class="cert-name">Artificial Intelligence Internship</div><div class="cert-org">Refinement Software Solutions Pvt. Ltd</div><div class="cert-year">2025</div></div></div>
-      <div class="cert-card"><div class="cert-icon-box ci-hr"><i class="ti ti-award"></i></div><div class="cert-body"><div class="cert-name">Software Engineer Accomplishment</div><div class="cert-org">HackerRank</div><div class="cert-year">2025</div></div></div>
-    </div>
-  </div>
-</section>
-<section class="edu-section" id="education">
-  <div class="section-inner">
-    <div class="section-label">Background</div>
-    <h2 class="section-title">Education</h2>
-    <p class="section-sub">Academic foundation from Bharathiyar University, blending computer science theory with practical programming skills.</p>
-    <div class="edu-timeline">
-      <div class="edu-item"><div class="edu-year">2023 – 2026</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">Bachelor of Computer Applications (BCA)</div><div class="edu-inst">VLB Janakiammal College of Arts &amp; Science · Bharathiyar University</div><span class="edu-score">80% · Graduating 2026</span></div></div>
-      <div class="edu-item"><div class="edu-year">2021 – 2023</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">HSC — Commerce, History, Economics &amp; Accountancy</div><div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div><span class="edu-score">83%</span></div></div>
-      <div class="edu-item"><div class="edu-year">2020 -2022</div><div class="edu-line"><div class="edu-dot"></div><div class="edu-degree">SSLC — General</div><div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div><span class="edu-score">Passed</span></div></div>
-    </div>
-  </div>
-</section>
-<section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title">Let's Connect</h2>
-    <p class="section-sub">Open to internships, entry-level roles, and collaboration on exciting projects. Let's build something together!</p>
-    <div class="contact-grid">
-      <div class="contact-text">
-        <p>I'm actively looking for my first professional opportunity in software development or web technologies. Whether you have a role, a project idea, or just want to chat tech — reach out!</p>
-        <div class="contact-links">
-          <a href="mailto:arunml2205@gmail.com" class="contact-link"><i class="ti ti-mail cl-icon"></i>arunml2205@gmail.com</a>
-          <a href="tel:+918667753191" class="contact-link"><i class="ti ti-phone cl-icon"></i>+91 8667753191</a>
-          <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="contact-link" target="_blank"><i class="ti ti-brand-linkedin cl-icon"></i>linkedin.com/in/arunkumar-murugan</a>
-          <a href="https://github.com/arun-sw" class="contact-link" target="_blank"><i class="ti ti-brand-github cl-icon"></i>github.com/arun-sw</a>
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section class="py-5" id="projects">
+  <div class="container py-4">
+    <div class="sec-label">What I've Built</div>
+    <h2 class="sec-title">Projects</h2>
+    <p class="sec-sub mb-5">Academic, self-learning, and real-world projects that demonstrate applied skills across the full stack.</p>
+    <div class="row g-4">
+      <!-- Featured -->
+      <div class="col-12">
+        <div class="proj-card" style="border-color:rgba(108,99,255,0.4);">
+          <div class="proj-stripe s-blue"></div>
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="proj-icon pi-b mb-0"><i class="ti ti-robot"></i></div>
+            <span style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent2);background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.25);padding:3px 10px;border-radius:20px;">⭐ FEATURED PROJECT</span>
+          </div>
+          <h5>VLB College Student Support Chatbot</h5>
+          <p class="mb-3">A production-grade RAG-based AI chatbot built for VLB Janakiammal College. Admin uploads PDFs (fee structure, admissions, exam schedules) → system auto-chunks &amp; embeds via OpenAI → stores vectors in Pinecone. Students register/login and ask questions in any of 6 languages — Tamil, Hindi, Telugu, Malayalam, Kannada, English — and get instant, accurate answers 24/7. Native Android app frontend built in Java (Android Studio). FastAPI backend with built-in speed monitor showing colour-coded ratings per request.</p>
+          <div class="mb-3">
+            <span class="ptag pt-b">Python</span><span class="ptag pt-b">FastAPI</span><span class="ptag pt-b">RAG</span><span class="ptag pt-b">OpenAI</span>
+            <span class="ptag pt-b">Pinecone</span><span class="ptag pt-b">MongoDB</span><span class="ptag pt-b">Android (Java)</span><span class="ptag pt-b">OpenRouter LLM</span>
+          </div>
+          <a href="https://github.com/arun-sw" class="proj-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a>
         </div>
       </div>
-      <div class="contact-form">
-        <div class="form-title">Send a Message</div>
-        <div class="form-row"><label>Your Name</label><input type="text" placeholder="e.g. Megha"></div>
-        <div class="form-row"><label>Email</label><input type="email" placeholder="you@company.com"></div>
-        <div class="form-row"><label>Message</label><textarea placeholder="Hi Arunkumar, I'd like to discuss..."></textarea></div>
-        <button class="btn-primary" style="width:100%; justify-content:center;" onclick="alert('Thank you! Reach out directly at arunml2205@gmail.com')"><i class="ti ti-send"></i> Send Message</button>
+      <!-- Other projects -->
+      <div class="col-md-6">
+        <div class="proj-card">
+          <div class="proj-stripe s-green"></div>
+          <div class="proj-icon pi-g"><i class="ti ti-server"></i></div>
+          <h5>Java Full-Stack Web App</h5>
+          <p class="mb-3">A full-stack application with Spring Boot backend and React frontend, integrating MySQL for data persistence. Demonstrates REST API design, JWT authentication, and component-based UI architecture.</p>
+          <div class="mb-3"><span class="ptag pt-g">Spring Boot</span><span class="ptag pt-g">React</span><span class="ptag pt-g">MySQL</span><span class="ptag pt-g">REST API</span></div>
+          <a href="https://github.com/arun-sw" class="proj-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="proj-card">
+          <div class="proj-stripe s-red"></div>
+          <div class="proj-icon pi-r"><i class="ti ti-chart-bar"></i></div>
+          <h5>Data Analytics Dashboard</h5>
+          <p class="mb-3">An interactive Power BI dashboard analyzing academic and organizational datasets. Showcases data visualization, DAX formulas, and storytelling through charts and KPIs for actionable insights.</p>
+          <div class="mb-3"><span class="ptag pt-r">Power BI</span><span class="ptag pt-r">SQL</span><span class="ptag pt-r">Excel</span><span class="ptag pt-r">DAX</span></div>
+          <a href="https://github.com/arun-sw" class="proj-link" target="_blank">View on GitHub <i class="ti ti-arrow-right"></i></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ═══════════ CHATBOT DEEP DIVE ═══════════ -->
+<section class="sec-alt py-5" id="chatbot">
+  <div class="container py-4">
+    <div class="sec-label">Deep Dive</div>
+    <h2 class="sec-title">VLB Student Support Chatbot</h2>
+    <p class="sec-sub mb-4">A production-grade RAG-powered AI chatbot making college information available 24/7 in 6 languages, with zero human intervention needed.</p>
+
+    <!-- RAG Architecture -->
+    <div class="arch-box mb-4">
+      <div class="sec-label mb-3">System Architecture — RAG Pipeline</div>
+      <div class="d-flex align-items-center flex-wrap gap-1">
+        <div class="arch-step"><div style="font-size:22px;margin-bottom:6px">📄</div><div style="font-size:11px;font-weight:600">PDF Upload</div><div style="font-size:10px;color:var(--muted)">Admin Panel</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-step"><div style="font-size:22px;margin-bottom:6px">✂️</div><div style="font-size:11px;font-weight:600">Chunking</div><div style="font-size:10px;color:var(--muted)">Text Splitting</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-step"><div style="font-size:22px;margin-bottom:6px">🔢</div><div style="font-size:11px;font-weight:600">Embeddings</div><div style="font-size:10px;color:var(--muted)">OpenAI API</div></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-step"><div style="font-size:22px;margin-bottom:6px">🗄️</div><div style="font-size:11px;font-weight:600">Pinecone DB</div><div style="font-size:10px;color:var(--muted)">Vector Store</div></div>
+        <div class="arch-arrow" style="color:var(--accent2)">→</div>
+        <div class="arch-step" style="background:rgba(0,212,170,0.05);border-color:rgba(0,212,170,0.2)"><div style="font-size:22px;margin-bottom:6px">🤖</div><div style="font-size:11px;font-weight:600;color:var(--accent2)">AI Answer</div><div style="font-size:10px;color:var(--muted)">OpenRouter LLM</div></div>
+      </div>
+    </div>
+
+    <!-- Chat + Features -->
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <div class="chat-window">
+          <div class="chat-bar">
+            <div class="cd cd-r"></div><div class="cd cd-y"></div><div class="cd cd-g"></div>
+            <span style="font-size:13px;font-weight:600;margin-left:6px">VLB Student Support Bot</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--accent2);display:flex;align-items:center;gap:4px"><i class="ti ti-circle-filled" style="font-size:8px"></i> Online</span>
+          </div>
+          <div class="chat-msgs">
+            <div class="msg m-bot">👋 Hello! I am the VLB College Student Support Assistant. How can I help you today?</div>
+            <div class="msg m-usr">What is the fee structure for BCA?</div>
+            <div class="msg m-bot">📋 BCA Annual Fee: ₹18,500 (tuition) + ₹2,200 (lab) + ₹1,500 (exam fee). Scholarships available for BC/MBC students. Shall I explain the payment process?</div>
+            <div class="msg m-usr">What is the admission process?</div>
+            <div class="msg m-bot">BCA Admission: 10+2 pass with 45% minimum. Apply online → Submit marksheet + TC → Counselling on July 15. Do you need more details?</div>
+          </div>
+          <div class="chat-input-bar">
+            <span style="font-size:11px;color:var(--muted)">Supports Tamil, Hindi, Telugu, English &amp; more...</span>
+            <div class="d-flex align-items-center gap-2">
+              <span style="font-size:10px;color:var(--accent2);background:rgba(0,212,170,0.1);padding:2px 7px;border-radius:5px">🟢 Excellent — 0.8s</span>
+              <button class="send-btn"><i class="ti ti-send"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="feat-item"><i class="ti ti-file-upload feat-ic"></i><div class="feat-txt"><strong>Smart Document Ingestion</strong> — Admin uploads PDFs (fees, admissions, exams). System auto-chunks, embeds via OpenAI &amp; indexes into Pinecone vector DB.</div></div>
+        <div class="feat-item"><i class="ti ti-language feat-ic"></i><div class="feat-txt"><strong>6-Language Multilingual</strong> — Tamil, Hindi, Telugu, Malayalam, Kannada &amp; English. Bot auto-detects and replies in the student's language.</div></div>
+        <div class="feat-item"><i class="ti ti-device-mobile feat-ic"></i><div class="feat-txt"><strong>Android App Frontend</strong> — Native Android app built in Java (Android Studio) with full register/login flow and persistent chat history.</div></div>
+        <div class="feat-item"><i class="ti ti-bolt feat-ic"></i><div class="feat-txt"><strong>Speed Monitor</strong> — Built-in performance tracker with colour-coded ratings: 🟢 Excellent / 🟡 Good / 🟠 Average / 🔴 Slow per request.</div></div>
+        <div class="feat-item"><i class="ti ti-shield-lock feat-ic"></i><div class="feat-txt"><strong>Secure Auth + MongoDB</strong> — Student register/login via FastAPI. All chat history &amp; user data persisted in MongoDB Atlas.</div></div>
+        <div class="feat-item"><i class="ti ti-server feat-ic"></i><div class="feat-txt"><strong>FastAPI Backend</strong> — RESTful API routes: /register, /login, /chat, /upload-doc, /admin. Async Python, production-ready.</div></div>
+        <div class="mt-3">
+          <span class="tech-pill" style="background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25)">Python</span>
+          <span class="tech-pill" style="background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25)">FastAPI</span>
+          <span class="tech-pill" style="background:rgba(0,212,170,0.08);color:#5eead4;border:1px solid rgba(0,212,170,0.2)">OpenAI Embeddings</span>
+          <span class="tech-pill" style="background:rgba(0,212,170,0.08);color:#5eead4;border:1px solid rgba(0,212,170,0.2)">Pinecone</span>
+          <span class="tech-pill" style="background:rgba(255,107,107,0.08);color:#fca5a5;border:1px solid rgba(255,107,107,0.2)">OpenRouter LLM</span>
+          <span class="tech-pill" style="background:rgba(255,107,107,0.08);color:#fca5a5;border:1px solid rgba(255,107,107,0.2)">MongoDB</span>
+          <span class="tech-pill" style="background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25)">Android (Java)</span>
+          <span class="tech-pill" style="background:rgba(108,99,255,0.12);color:#a09cff;border:1px solid rgba(108,99,255,0.25)">RAG</span>
+        </div>
+        <a href="https://github.com/arun-sw" class="btn-grad mt-3 d-inline-flex" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CERTIFICATIONS ═══════════ -->
+<section class="py-5" id="certifications">
+  <div class="container py-4">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications &amp; Achievements</h2>
+    <p class="sec-sub mb-5">Industry-recognized certifications from AWS, IBM, Microsoft, Infosys, and more — validating hands-on expertise.</p>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-aws"><i class="ti ti-cloud"></i></div><div><div class="cert-name">Introduction to AWS Solutions</div><div class="cert-org">Amazon Web Services</div><div class="cert-yr">Sep 2024</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-inf"><i class="ti ti-code"></i></div><div><div class="cert-name">Java for Beginners</div><div class="cert-org">Infosys</div><div class="cert-yr">Jul 2024</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-ms"><i class="ti ti-brand-windows"></i></div><div><div class="cert-name">Generative AI with Copilot in Bing</div><div class="cert-org">Microsoft Learn</div><div class="cert-yr">Sep 2024</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-sql"><i class="ti ti-database"></i></div><div><div class="cert-name">MySQL Intermediate</div><div class="cert-org">Knest</div><div class="cert-yr">Apr 2025</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-ibm"><i class="ti ti-layers-intersect"></i></div><div><div class="cert-name">Full Stack Certification</div><div class="cert-org">IBM Cloud · Digilabs</div><div class="cert-yr">2024</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-ai"><i class="ti ti-brain"></i></div><div><div class="cert-name">AI for Beginners Certificate</div><div class="cert-org">HP LIFE</div><div class="cert-yr">2025</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-ai"><i class="ti ti-robot"></i></div><div><div class="cert-name">Artificial Intelligence Internship</div><div class="cert-org">Refinement Software Solutions Pvt. Ltd</div><div class="cert-yr">2025</div></div></div></div>
+      <div class="col-sm-6 col-lg-3"><div class="cert-card"><div class="cert-ico ci-hr"><i class="ti ti-award"></i></div><div><div class="cert-name">Software Engineer Accomplishment</div><div class="cert-org">HackerRank</div><div class="cert-yr">2025</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section class="sec-alt py-5" id="education">
+  <div class="container py-4">
+    <div class="sec-label">Background</div>
+    <h2 class="sec-title">Education</h2>
+    <p class="sec-sub mb-5">Academic foundation from Bharathiyar University, blending computer science theory with practical programming skills.</p>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-yr">2023 – 2026</div>
+          <div class="edu-deg">Bachelor of Computer Applications (BCA)</div>
+          <div class="edu-inst">VLB Janakiammal College of Arts &amp; Science · Bharathiyar University</div>
+          <span class="edu-score">80% · Graduating 2026</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-yr">2021 – 2023</div>
+          <div class="edu-deg">HSC — Commerce, History, Economics &amp; Accountancy</div>
+          <div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div>
+          <span class="edu-score">83%</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-yr">2020 – 2021</div>
+          <div class="edu-deg">SSLC — General</div>
+          <div class="edu-inst">Thirupathi Arulneri Higher Secondary School · State Board</div>
+          <span class="edu-score">Passed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="py-5" id="contact">
+  <div class="container py-4">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Let's Connect</h2>
+    <p class="sec-sub mb-5">Open to internships, entry-level roles, and collaboration on exciting projects. Let's build something together!</p>
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:24px">I'm actively looking for my first professional opportunity in software development or web technologies. Whether you have a role, a project idea, or just want to chat tech — reach out!</p>
+        <a href="mailto:arunml2205@gmail.com" class="contact-link"><i class="ti ti-mail cl-ic"></i> arunml2205@gmail.com</a>
+        <a href="tel:+918667753191" class="contact-link"><i class="ti ti-phone cl-ic"></i> +91 86677 53191</a>
+        <a href="https://linkedin.com/in/arunkumar-murugan-5b6173274" class="contact-link" target="_blank"><i class="ti ti-brand-linkedin cl-ic"></i> linkedin.com/in/arunkumar-murugan</a>
+        <a href="https://github.com/arun-sw" class="contact-link" target="_blank"><i class="ti ti-brand-github cl-ic"></i> github.com/arun-sw</a>
+      </div>
+      <div class="col-lg-7">
+        <div class="contact-form-box">
+          <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px">Send a Message</div>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-control" placeholder="e.g. Megha">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="you@company.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Hi Arunkumar, I'd like to discuss..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn-grad w-100 justify-content-center" onclick="alert('Thank you! Reach out directly at arunml2205@gmail.com')">
+                <i class="ti ti-send"></i> Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-  <div>Designed &amp; built by <span>Arunkumar Murugan</span> · Coimbatore, Tamil Nadu</div>
-  <div style="margin-top:6px">BCA Final Year · Bharathiyar University · <span>2026</span></div>
+  <div class="container">
+    <div>Designed &amp; built by <span>Arunkumar Murugan</span> · Coimbatore, Tamil Nadu</div>
+    <div style="margin-top:4px">BCA Final Year · Bharathiyar University · <span>2026</span></div>
+  </div>
 </footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
